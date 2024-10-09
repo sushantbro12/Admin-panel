@@ -3,12 +3,12 @@ import { getAuth, GithubAuthProvider } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCzDz0MQOVDiRS0pLcQs6AB5sZkPKmBBSE",
-  authDomain: "admin-dashboard-20cbe.firebaseapp.com",
-  projectId: "admin-dashboard-20cbe",
-  storageBucket: "admin-dashboard-20cbe.appspot.com",
-  messagingSenderId: "115878971407",
-  appId: "1:115878971407:web:c9bf1d09bccf146b023b7a",
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_APP_ID,
 };
 
 // Initialize Firebase
