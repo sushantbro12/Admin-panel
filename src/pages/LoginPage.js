@@ -37,7 +37,7 @@ const LoginPage = () => {
             />
           </div>
           <button
-            className=" w-full border bg-blue-600 text-white font-bold py-2 px-4 rounded-lg my-5 hover:text-blue-600 hover:bg-slate-100 hover:border-blue-600 "
+            className=" w-full border bg-blue-600 text-white font-bold py-2 px-4 rounded-lg  hover:text-blue-600 hover:bg-slate-100 hover:border-blue-600 m-2 mt-6 "
             type="submit">
             Login
           </button>

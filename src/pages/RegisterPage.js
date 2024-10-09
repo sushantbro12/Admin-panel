@@ -1,8 +1,29 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../firebase/AuthenticationContext";
 
 const RegisterPage = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassowrd, setConfirmPassword] = useState("");
+  const { createUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (password === confirmPassowrd) {
+      createUser(email, password)
+        .then(() => {
+          navigate("/");
+        })
+        .catch((error) => {
+          alert(error);
+        });
+    } else {
+      alert("password do not match");
+    }
+  };
   return (
     <div className="flex justify-center items-center bg-gray-100 ">
       <div className="bg-white p-10 rounded-lg shadow-lg max-w-md w-full max-h-[1200px]">
@@ -11,26 +32,30 @@ const RegisterPage = () => {
           Enter your personal details to create account
         </p>
 
-        <form>
+        <form onSubmit={handleSubmit}>
           <div>
             <label className="block font-semibold ml-3 mt-8 " htmlFor="email">
               Your Username<span className="text-red-500"> *</span>
             </label>
-            <div className="flex">
-              <input
-                type="email"
-                id="email"
-                className=" m-2 px-2 py-2 border rounded-lg border-gray-300 w-full"
-                placeholder="First name"
-                required
-              />
-              <input
-                type="email"
-                id="email"
-                className=" m-2 px-2 py-2 border rounded-lg border-gray-300 w-full"
-                placeholder="Last name"
-                required
-              />
+            <div className="flex gap-4">
+              <div>
+                <input
+                  type="text"
+                  id="text"
+                  className=" m-2 px-3 py-2 border rounded-lg border-gray-300 w-full  "
+                  placeholder="First name"
+                  required
+                />
+              </div>
+              <div>
+                <input
+                  type="text"
+                  id="text"
+                  className=" m-2 px-3 py-2  border rounded-lg border-gray-300 w-full"
+                  placeholder="Last name"
+                  required
+                />
+              </div>
             </div>
           </div>
           <diV>
@@ -38,9 +63,10 @@ const RegisterPage = () => {
               Email Address<span className="text-red-500"> *</span>
             </label>
             <input
+              onChange={(e) => setEmail(e.target.value)}
               type="email"
               id="email"
-              className=" m-2 px-2 py-2 border rounded-lg border-gray-300 w-full"
+              className=" m-2 px-2 py-2 border rounded-lg border-gray-300 w-full "
               placeholder="Enter your email address"
               required
             />
@@ -50,6 +76,7 @@ const RegisterPage = () => {
               Password<span className="text-red-500"> *</span>
             </label>
             <input
+              onChange={(e) => setPassword(e.target.value)}
               className=" m-2 px-2 py-2 border rounded-lg border-gray-300 w-full"
               type="password"
               id="password"
@@ -62,6 +89,7 @@ const RegisterPage = () => {
               Confirm Password<span className="text-red-500"> *</span>
             </label>
             <input
+              onChange={(e) => setConfirmPassword(e.target.value)}
               className=" m-2 px-2 py-2 border rounded-lg border-gray-300 w-full"
               type="password"
               id="password"
@@ -70,7 +98,7 @@ const RegisterPage = () => {
             />
           </div>
           <button
-            className=" w-full border bg-blue-600 text-white font-bold py-2 px-4 rounded-lg my-5 hover:text-blue-600 hover:bg-slate-100 hover:border-blue-600 "
+            className=" w-full border bg-blue-600 text-white font-bold py-2 px-4 rounded-lg  hover:text-blue-600 hover:bg-slate-100 hover:border-blue-600 m-2 mt-6 "
             type="submit">
             Login
           </button>
