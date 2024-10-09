@@ -8,7 +8,7 @@ const RegisterPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassowrd, setConfirmPassword] = useState("");
-  const { createUser } = useContext(AuthContext);
+  const { createUser, googleSignIn } = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -28,6 +28,17 @@ const RegisterPage = () => {
       alert("password do not match");
     }
   };
+
+  const handleGoogleSignIn = () => {
+    googleSignIn()
+      .then(() => {
+        navigate("/dashboard");
+      })
+      .catch((error) => {
+        alert("google sign-in error", error);
+      });
+  };
+
   return (
     <>
       {loading ? (
@@ -125,7 +136,9 @@ const RegisterPage = () => {
             </div>
 
             <div className="flex justify-center items-center mb-7">
-              <button className="flex items-center gap-2 border border-gray-300 rounded-lg py-2 px-3 hover:bg-blue-600 hover:text-white ">
+              <button
+                onClick={handleGoogleSignIn}
+                className="flex items-center gap-2 border border-gray-300 rounded-lg py-2 px-3 hover:bg-blue-600 hover:text-white ">
                 <FcGoogle size={20} />
                 <span className="font-semibold">Sign in with Google</span>
               </button>
