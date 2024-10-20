@@ -33,7 +33,6 @@ const ProductsTable = () => {
     setFilteredProducts(filtered);
   };
 
-  // Real-time Firestore listener
   useEffect(() => {
     const productsCollection = collection(db, "products");
     const unsubscribe = onSnapshot(productsCollection, (snapshot) => {
@@ -42,22 +41,20 @@ const ProductsTable = () => {
         ...doc.data(),
       }));
       setProducts(productsList);
-      setFilteredProducts(productsList); // Update filtered products in real-time
+      setFilteredProducts(productsList);
     });
 
-    return () => unsubscribe(); // Cleanup the listener on unmount
+    return () => unsubscribe();
   }, []);
 
-  // Delete product
   const handleDelete = async (id) => {
     await deleteDoc(doc(db, "products", id));
     setProducts(products.filter((product) => product.id !== id));
     setFilteredProducts(
       filteredProducts.filter((product) => product.id !== id)
-    ); // Update filtered list as well
+    );
   };
 
-  // Edit product (show edit form)
   const handleEdit = (product) => {
     setEditingProduct(product);
     setEditFormData({

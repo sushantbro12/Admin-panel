@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { db } from "../firebase/firebase";
 import { collection, getDocs } from "firebase/firestore";
 import { motion } from "framer-motion";
-import Nav from "../component/Nav"; // Import the Nav component
-import Sidebar from "../component/Sidebar"; // Import the Sidebar component
+import Nav from "../component/Nav";
+import Sidebar from "../component/Sidebar";
 import { Link } from "react-router-dom";
 
 const OrderList = () => {

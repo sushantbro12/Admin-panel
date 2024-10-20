@@ -17,9 +17,6 @@ export default function App() {
         <Routes>
           <Route path="/" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
-          <Route path="/orders" element={<OrderList />} />
-          <Route path="/order/:id" element={<OrderDetails />} />
-          <Route path="/settings" element={<SettingsPage />} />
 
           <Route
             path="/dashboard"
@@ -42,6 +39,30 @@ export default function App() {
             element={
               <PrivateRoute>
                 <UsersPage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/orders"
+            element={
+              <PrivateRoute>
+                <OrderList />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/order/:id"
+            element={
+              <PrivateRoute>
+                <OrderDetails />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/settings"
+            element={
+              <PrivateRoute>
+                <SettingsPage />
               </PrivateRoute>
             }
           />

@@ -1,7 +1,7 @@
 // src/component/OrderDetails.js
 
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom"; // Import useParams
+import { useParams } from "react-router-dom";
 import { db } from "../firebase/firebase";
 import { doc, getDoc } from "firebase/firestore";
 import Sidebar from "../component/Sidebar";
@@ -19,7 +19,7 @@ const OrderDetails = () => {
         return;
       }
 
-      const orderDoc = doc(db, "orders", orderId); // Ensure orderId is correct
+      const orderDoc = doc(db, "orders", orderId);
       const orderSnapshot = await getDoc(orderDoc);
 
       if (orderSnapshot.exists()) {

@@ -23,8 +23,8 @@ const AuthProvider = ({ children }) => {
       {
         email: user.email,
         displayName: user.displayName || "Anonymous",
-        role: "Customer", // Default role
-        status: "Active", // Default status
+        role: "Customer",
+        status: "Active",
       },
       { merge: true }
     );
