@@ -1,10 +1,10 @@
 import React from "react";
+import UsersTable from "../users/UserTable";
 import { motion } from "framer-motion";
 import { UserCheck, UserPlus, UsersIcon, UserX } from "lucide-react";
 import StatCard from "../component/StatCard";
-import UsersTable from "../users/UserTable";
-import Sidebar from "../component/Sidebar"; // Import the Sidebar component
-import Nav from "../component/Nav"; // Import Nav component for consistent navigation
+import Sidebar from "../component/Sidebar";
+import Nav from "../component/Nav";
 
 const userStats = {
   totalUsers: 152845,
@@ -16,11 +16,9 @@ const userStats = {
 const UsersPage = () => {
   return (
     <div className="flex h-screen bg-gray-900 text-gray-100 overflow-hidden">
-      {/* Sidebar Component */}
       <Sidebar />
-
       <div className="flex-1 overflow-auto relative z-10">
-        <Nav title="Users" /> {/* Add the Nav component for consistent title */}
+        <Nav title="Users" />
         <main className="max-w-7xl mx-auto py-6 px-4 lg:px-8">
           <motion.div
             className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 mb-8"
@@ -52,6 +50,7 @@ const UsersPage = () => {
               color="#EF4444"
             />
           </motion.div>
+          <h1 className="text-2xl font-bold mb-4">User Management</h1>
           <UsersTable />
         </main>
       </div>

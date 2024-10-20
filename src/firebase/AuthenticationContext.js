@@ -1,3 +1,4 @@
+// src/AuthProvider.js
 import { createContext, useState, useEffect } from "react";
 import {
   createUserWithEmailAndPassword,
@@ -7,20 +8,41 @@ import {
   signOut,
   onAuthStateChanged,
 } from "firebase/auth";
-import { auth } from "./firebase";
+import { auth, db } from "./firebase";
+import { doc, setDoc } from "firebase/firestore";
 
 export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
 
+  const saveUserDetails = async (user) => {
+    const userRef = doc(db, "users", user.uid);
+    await setDoc(
+      userRef,
+      {
+        email: user.email,
+        displayName: user.displayName || "Anonymous",
+        role: "Customer", // Default role
+        status: "Active", // Default status
+      },
+      { merge: true }
+    );
+  };
+
   const createUser = (email, password) => {
-    return createUserWithEmailAndPassword(auth, email, password);
+    return createUserWithEmailAndPassword(auth, email, password).then(
+      (userCredential) => {
+        saveUserDetails(userCredential.user);
+      }
+    );
   };
 
   const googleSignIn = () => {
     const provider = new GoogleAuthProvider();
-    return signInWithPopup(auth, provider);
+    return signInWithPopup(auth, provider).then((userCredential) => {
+      saveUserDetails(userCredential.user);
+    });
   };
 
   const loginUser = (email, password) => {
@@ -39,7 +61,6 @@ const AuthProvider = ({ children }) => {
     return () => unsubscribe();
   }, []);
 
-  // Values to be provided by AuthContext
   const authValue = {
     currentUser,
     createUser,
