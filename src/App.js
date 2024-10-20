@@ -9,6 +9,7 @@ import UsersPage from "./pages/UsersPage";
 import OrderList from "./orders/OrderList";
 import OrderDetails from "./orders/OderDetails";
 import SettingsPage from "./pages/SettingsPage";
+import NotFound from "./pages/NotFound";
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
+          <Route path="*" element={<NotFound />} />
 
           <Route
             path="/dashboard"

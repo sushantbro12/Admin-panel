@@ -54,7 +54,7 @@ const UsersTable = () => {
     setUsers(users.filter((user) => user.id !== id));
   };
 
-  // Edit user (show edit form)
+  // Edit user
   const handleEdit = (user) => {
     setEditingUser(user);
     setEditFormData({
@@ -77,7 +77,7 @@ const UsersTable = () => {
       status,
     });
 
-    setEditingUser(null); // Close the edit form after updating
+    setEditingUser(null);
   };
 
   // Create a new user
@@ -106,7 +106,6 @@ const UsersTable = () => {
 
   return (
     <div className="bg-gray-800 bg-opacity-50 shadow-lg rounded-xl p-6">
-      {/* Users List */}
       <table className="min-w-full divide-y divide-gray-700">
         <thead>
           <tr>
@@ -162,10 +161,7 @@ const UsersTable = () => {
           ))}
         </tbody>
       </table>
-      {/* Space between User List and Forms */}
       <div className="my-8 border-b border-gray-600"></div>{" "}
-      {/* Optional separator line */}
-      {/* Edit form */}
       {editingUser && (
         <form className="mt-6" onSubmit={handleUpdate}>
           <h3 className="text-lg text-gray-100">
@@ -219,7 +215,6 @@ const UsersTable = () => {
           </div>
         </form>
       )}
-      {/* New User Form */}
       <form className="mb-6 mt-10" onSubmit={handleCreateUser}>
         <h3 className="text-2xl font-bold text-gray-100">Create New User</h3>
         <div className="flex flex-col gap-4 mt-4">

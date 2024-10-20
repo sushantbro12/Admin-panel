@@ -77,7 +77,7 @@ const ProductsTable = () => {
       stock: parseInt(stock, 10),
     });
 
-    setEditingProduct(null); // Close the edit form after updating
+    setEditingProduct(null);
   };
 
   return (
@@ -86,7 +86,6 @@ const ProductsTable = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.2 }}>
-      {/* Search bar */}
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-xl font-semibold text-gray-100">Product List</h2>
         <div className="relative">
