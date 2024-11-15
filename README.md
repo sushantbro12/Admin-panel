@@ -1,3 +1,5 @@
+<b>Register and Sign in works for now google sign in only works in localhost</b>
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
